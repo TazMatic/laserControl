@@ -1,4 +1,5 @@
 ﻿using JsonConfigSaver;
+using LaserControl.ThreadWatcher;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,6 @@ namespace LaserControl.Config
         public bool destroyEnergyAfterMeteorDestroy = true;
         [JsonProperty]
         public bool multiplyEnergyNeededAfterMeteorDestroy = true;
-
         [JsonProperty]
         public float energyFactorMultiplier = 1.75f;
 
@@ -30,9 +30,11 @@ namespace LaserControl.Config
         [JsonProperty]
         private int energyBaseNeededForLaser = 50000;
         [JsonProperty]
-        public int laserNeeded = 10;
+        private int laserBaseNeeded = 4;
         [JsonProperty]
         public int onlinePlayersNeededForLaser = 1;
+        [JsonProperty]
+        public float laserNeededMultiplier = 1.3f;
 
         //reward
         [JsonProperty]
@@ -52,28 +54,43 @@ namespace LaserControl.Config
         public String moneyName = "GiveYouMoneyNameHere";
 
 
-        public LaserConfig(string plugin, string name) : base(plugin, name)
-        {
-          
-        }
-
 
         //Save
         [JsonProperty]
         private int currentDestruction = 0;
 
 
+        public LaserConfig(string plugin, string name) : base(plugin, name)
+        {
+          
+        }
+
+
+
+
+
         public int getEnergyNeededForLaser()
         {
             double multiplier = Math.Pow(energyFactorMultiplier, currentDestruction);
-            int needed = energyBaseNeededForLaser * (int) multiplier;
+            double needed = energyBaseNeededForLaser * multiplier;
 
-            return needed;
+            return (int)needed;
         }
+
+        public int getLaserNeeded()
+        {
+            double multiplier = Math.Pow(laserNeededMultiplier, currentDestruction);
+            double needed = laserBaseNeeded * multiplier;
+
+            return (int)needed;
+        }
+
 
         public void updateCurrentDestruction()
         {
             this.currentDestruction++;
+            this.save();
+            LaserWatcher.reloadAllObject();
         }
 
     }

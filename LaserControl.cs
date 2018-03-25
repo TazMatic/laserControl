@@ -43,6 +43,11 @@ namespace LaserControl
             Thread objw = new Thread(() => LaserWatcher.OjbectModifier());
             objw.Start();
 
+
+            Thread lsr = new Thread(() => LaserWatcher.LaserActivationCheck());
+            lsr.Start();
+
+
             MeteorWatcher.Initialize();
             Thread meteorw = new Thread(() => MeteorWatcher.watchMeteor());
             meteorw.Start();

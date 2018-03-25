@@ -23,9 +23,6 @@ namespace LaserControl.CustomComponent
     class OnlinePlayerComponent : WorldObjectComponent
     {
 
-        public static bool wasActive = false;
-     
-
         private StatusElement status;
 
         private bool enabled;
@@ -61,18 +58,7 @@ namespace LaserControl.CustomComponent
             this.status.SetStatusMessage(this.Enabled, "Minimum online player ok ("+ count + "/"+ minPlayer + ")", "Insufficient online player ("+ count + "/"+ minPlayer + ")");
 
 
-            ChargingComponent compo =  this.Parent.GetComponent<ChargingComponent>();
-            if(compo.Activated&&!wasActive)
-            {
-                Console.WriteLine("Laser control detect a new laser activation !");
-                wasActive = true;
-                CustomEvent.onNewLaserActivation(this);
-            }
-            else if(!compo.Activated&&wasActive)
-            {
-                wasActive = false;
-                CustomEvent.onLaserDisable();
-            }
+
 
           
         }

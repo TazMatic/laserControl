@@ -47,6 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\UpdateDestruction.cs" />
+    <Compile Include="Commands\BaseCommand.cs" />
     <Compile Include="Config\LaserConfig.cs" />
     <Compile Include="Injection.cs" />
     <Compile Include="LaserControl.cs" />

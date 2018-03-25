@@ -15,7 +15,7 @@ namespace LaserControl.Tools
     class CustomEvent
     {
         private static ArrayList lastPlayerActivator;
-        private static OnlinePlayerComponent lastCompoActivator;
+        private static LaserObject lastLaserActivator;
 
         public static void onLaserDisable()
         {
@@ -44,24 +44,24 @@ namespace LaserControl.Tools
             ChatManager.ServerMessageToAll(Text.Info(Text.Size(1f, $"Retour à l'âge de pierre: Il semble que l'explopsion du météorite en plein vol ai détruit une grande partie de l'équipement électronique.")), false, Eco.Shared.Services.DefaultChatTags.Meteor, Eco.Shared.Services.ChatCategory.Info);
 
 
-            PowerGridComponent grid = lastCompoActivator.Parent.GetComponent<PowerGridComponent>();
+            PowerGridComponent grid = lastLaserActivator.GetComponent<PowerGridComponent>();
             Destroyer.destroyEquipement(grid);
 
             Rewarder.reward(lastPlayerActivator);
 
             LaserControl.config.updateCurrentDestruction();
 
-            lastCompoActivator = null;
+            lastLaserActivator = null;
 
             Thread spawner = new Thread(() => SpawnMeteorThread.spawn());
             spawner.Start();
         }
 
 
-        public static void onNewLaserActivation(OnlinePlayerComponent onlineCompo)
+        public static void onNewLaserActivation(LaserObject laser)
         {
-            lastCompoActivator = onlineCompo;
-            PowerGridNetworkComponent grid = onlineCompo.Parent.GetComponent<PowerGridNetworkComponent>();
+            lastLaserActivator = laser;
+            PowerGridNetworkComponent grid = lastLaserActivator.GetComponent<PowerGridNetworkComponent>();
 
             foreach (WorldObject o in grid.NetworkedObjects)
             {
