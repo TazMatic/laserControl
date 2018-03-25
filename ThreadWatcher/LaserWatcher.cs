@@ -1,6 +1,8 @@
 ﻿using Eco.Gameplay.Components;
 using Eco.Gameplay.Objects;
+using Eco.Gameplay.Systems.Chat;
 using Eco.Mods.TechTree;
+using Eco.Shared.Utils;
 using LaserControl.CustomComponent;
 using LaserControl.Tools;
 using System;
@@ -197,7 +199,7 @@ namespace LaserControl.ThreadWatcher
 
             foreach (WorldObject obj in WorldObjectManager.All)
             {
-                if(obj is LaserObject)
+                if (obj is LaserObject)
                 {
                     LaserObject laser = obj as LaserObject;
 
@@ -230,7 +232,26 @@ namespace LaserControl.ThreadWatcher
             }
             else if(hasOneActivated && wasActive)
             {
-                //continue activation update
+                PowerGridComponent grid = activ.GetComponent<PowerGridComponent>();
+
+                bool disable = false;
+                if (!gridHasPower(grid))
+                {
+                    Console.WriteLine(LaserControl.config + "Stoping laser, not ebought energy, this is a server patch. Demand: " + grid.EnergyDemand + " supply: " + grid.EnergySupply);
+                    disable = true;
+                }
+
+                if(!gridAlwaysMatchComponent(grid))
+                {
+                    Console.WriteLine(LaserControl.config + "Stoping laser, not ebought laser, this is a server patch");
+                    disable = true;
+                }
+
+                if(disable)
+                {
+                    disableLaser(grid);
+                    ChatManager.ServerMessageToAll(Text.Info(Text.Size(1f, $"Laser has been disabled")), false, Eco.Shared.Services.DefaultChatTags.Meteor, Eco.Shared.Services.ChatCategory.Info);
+                }
             }
             else if(wasActive && !hasOneActivated)
             {
@@ -250,6 +271,57 @@ namespace LaserControl.ThreadWatcher
 
         }
 
+        public static void disableLaser(PowerGridComponent grid)
+        {
+            foreach (PowerGridComponent toDisable in grid.PowerGrid.Components)
+            {
+                WorldObject o = toDisable.Parent;
+                if (o is LaserObject)
+                {
+                    LaserObject ltodisable = o as LaserObject;
+                    ChargingComponent charToDisable = ltodisable.GetComponent<ChargingComponent>();
+                    charToDisable.Activated = false;
+                    charToDisable.TimeExpended = 0;
+                    Console.WriteLine(LaserControl.config + "Charging component disabled...");
+                }
+            }
+        }
+        public static bool gridAlwaysMatchComponent(PowerGridComponent grid)
+        {
+            int nb = 0;
+            bool computerFind = false;
+            foreach (PowerGridComponent check in grid.PowerGrid.Components)
+            {
+                if(check.Parent is LaserObject)
+                {
+                    nb++;
+                }
+                else if(check.Parent is ComputerLabObject)
+                {
+                    computerFind = true;
+                }
+            }
 
+            if (!computerFind)
+                return false;
+
+            if (nb < LaserControl.config.getLaserNeeded())
+                return false;
+            return true;
+        }
+
+        public static bool gridHasPower(PowerGridComponent grid)
+        {
+            float demand = 0;
+            float suply = 0;
+            foreach (PowerGridComponent check in grid.PowerGrid.Components)
+            {
+                demand += check.EnergyDemand;
+                suply += check.EnergySupply;
+            }
+            if (demand > suply)
+                return false;
+            return true;
+        }
     }
 }
