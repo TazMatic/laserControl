@@ -21,6 +21,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x64</PlatformTarget>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -31,6 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,10 +47,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Config\LaserConfig.cs" />
+    <Compile Include="Injection.cs" />
     <Compile Include="LaserControl.cs" />
-    <Compile Include="ThreadWatcher\LaserWatcher.cs" />
-    <Compile Include="Tools\OnlinePlayerComponent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ThreadWatcher\LaserWatcher.cs" />
+    <Compile Include="CustomComponent\OnlinePlayerComponent.cs" />
+    <Compile Include="ThreadWatcher\MeteorWatcher.cs" />
+    <Compile Include="Tools\CustomEvent.cs" />
+    <Compile Include="Tools\Destroyer.cs" />
+    <Compile Include="Tools\GeneralTool.cs" />
+    <Compile Include="Tools\Rewarder.cs" />
+    <Compile Include="Tools\SpawnMeteorThread.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Eco.Core\Eco.Core.csproj">
@@ -103,6 +117,14 @@
       <Project>{869fe5e3-595a-43c2-8149-701e1cc72396}</Project>
       <Name>EcoColorLib</Name>
     </ProjectReference>
+    <ProjectReference Include="..\jsonconfigsaver\JsonConfigSaverLib.csproj">
+      <Project>{2ada8a66-8a43-46c4-91f9-ce7170fba2f9}</Project>
+      <Name>JsonConfigSaverLib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
