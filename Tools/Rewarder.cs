@@ -2,10 +2,6 @@
 using Eco.Gameplay.Players;
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LaserControl.Tools
 {
@@ -13,18 +9,18 @@ namespace LaserControl.Tools
     {
         public static void reward(ArrayList users)
         {
-            if (LaserControl.config.activateSkillPointReward)
+            if (LaserControlMod.config.activateSkillPointReward)
             {
                 int togive = 0;
 
-                if (LaserControl.config.skillPointRewardPerPlayer > 0)
+                if (LaserControlMod.config.skillPointRewardPerPlayer > 0)
                 {
-                    togive += LaserControl.config.skillPointRewardPerPlayer;
+                    togive += LaserControlMod.config.skillPointRewardPerPlayer;
                 }
 
-                if (LaserControl.config.skillPointRewardToShare > 0)
+                if (LaserControlMod.config.skillPointRewardToShare > 0)
                 {
-                    int i = LaserControl.config.skillPointRewardToShare / users.Count;
+                    int i = LaserControlMod.config.skillPointRewardToShare / users.Count;
                     togive += i;
                 }
 
@@ -33,34 +29,34 @@ namespace LaserControl.Tools
                     foreach (User u in users)
                     {
                         u.UseXP(-togive);
-                        u.Player.SendTemporaryMessage(LaserControl.coloredPrefix + "You win " + togive + " skill point !");
+                        u.Player.SendTemporaryMessage(LaserControlMod.coloredPrefix + "You win " + togive + " skill point !");
                     }
                 }
 
             }
 
 
-            if (LaserControl.config.activateEconomyReward)
+            if (LaserControlMod.config.activateEconomyReward)
             {
-                String money = LaserControl.config.moneyName;
+                String money = LaserControlMod.config.moneyName;
                 Currency currency = EconomyManager.Currency.GetCurrency(money);
 
                 if (currency == null)
                 {
-                    Console.WriteLine(LaserControl.prefix+"ERROR while rewarding player ! We can't fin this money name: " + money);
+                    Console.WriteLine(LaserControlMod.prefix+"ERROR while rewarding player ! We can't fin this money name: " + money);
                     return;
                 }
 
                 int togive = 0;
 
-                if (LaserControl.config.moneyToGivePerPlayer > 0)
+                if (LaserControlMod.config.moneyToGivePerPlayer > 0)
                 {
-                    togive += LaserControl.config.moneyToGivePerPlayer;
+                    togive += LaserControlMod.config.moneyToGivePerPlayer;
                 }
 
-                if (LaserControl.config.moneyToGiveToShare > 0)
+                if (LaserControlMod.config.moneyToGiveToShare > 0)
                 {
-                    int i = LaserControl.config.moneyToGiveToShare / users.Count;
+                    int i = LaserControlMod.config.moneyToGiveToShare / users.Count;
                     togive += i;
                 }
 
@@ -70,7 +66,7 @@ namespace LaserControl.Tools
                     foreach (User u in users)
                     {
                         currency.CreditAccount(u.Name, -50);
-                        u.Player.SendTemporaryMessage(LaserControl.coloredPrefix+"You win " + togive + " "+money+" money !");
+                        u.Player.SendTemporaryMessage(LaserControlMod.coloredPrefix+"You win " + togive + " "+money+" money !");
                     }
                 }
 

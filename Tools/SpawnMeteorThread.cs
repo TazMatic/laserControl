@@ -2,12 +2,8 @@
 using Eco.Gameplay.Systems.Chat;
 using Eco.Shared.Utils;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace LaserControl.Tools
 {
@@ -17,7 +13,7 @@ namespace LaserControl.Tools
         {
             Thread.Sleep(45 * 1000);
 
-            Console.WriteLine(LaserControl.prefix + "Trying to spawn a new meteor !");
+            Console.WriteLine(LaserControlMod.prefix + "Trying to spawn a new meteor !");
 
 
             MethodInfo methodInfo = null;
@@ -46,7 +42,7 @@ namespace LaserControl.Tools
             }
             else
             {
-                Console.WriteLine(LaserControl.prefix + "Error while create the new meteor, method not find");
+                Console.WriteLine(LaserControlMod.prefix + "Error while create the new meteor, method not find");
             }
 
 

@@ -1,18 +1,9 @@
-﻿using Eco.Core.Controller;
-using Eco.Core.Utils;
+﻿using Eco.Core.Utils;
 using Eco.Gameplay.Components;
-using Eco.Gameplay.Disasters;
 using Eco.Gameplay.Objects;
 using Eco.Gameplay.Players;
-using Eco.Mods.TechTree;
-using Eco.Shared.Networking;
 using Eco.Shared.Serialization;
-using LaserControl.Tools;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LaserControl.CustomComponent
 {
@@ -43,7 +34,7 @@ namespace LaserControl.CustomComponent
 
         private void UpdateNetwork()
         {
-            int minPlayer = LaserControl.config.onlinePlayersNeededForLaser;
+            int minPlayer = LaserControlMod.config.onlinePlayersNeededForLaser;
             int count = UserManager.OnlineUsers.Count();
 
             if(count>= minPlayer)

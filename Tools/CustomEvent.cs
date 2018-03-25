@@ -1,11 +1,9 @@
 ﻿using Eco.Gameplay.Components;
-using Eco.Gameplay.Disasters;
 using Eco.Gameplay.Objects;
 using Eco.Gameplay.Players;
 using Eco.Gameplay.Systems.Chat;
 using Eco.Mods.TechTree;
 using Eco.Shared.Utils;
-using LaserControl.CustomComponent;
 using System;
 using System.Collections;
 using System.Threading;
@@ -48,7 +46,7 @@ namespace LaserControl.Tools
 
             Rewarder.reward(lastPlayerActivator);
 
-            LaserControl.config.updateCurrentDestruction();
+            LaserControlMod.config.updateCurrentDestruction();
 
             lastLaserActivator = null;
 

@@ -22,7 +22,7 @@ namespace LaserControl.ThreadWatcher
 
         public static void reloadAllObject()
         {
-            Console.WriteLine(LaserControl.prefix + "Reloading all world object");
+            Console.WriteLine(LaserControlMod.prefix + "Reloading all world object");
             needReload = true;
         }
 
@@ -67,11 +67,11 @@ namespace LaserControl.ThreadWatcher
 
 
                         PowerConsumptionComponent powerConso = laser.GetComponent<PowerConsumptionComponent>();
-                        powerConso.SetPowerConsumption(LaserControl.config.getEnergyNeededForLaser());
+                        powerConso.SetPowerConsumption(LaserControlMod.config.getEnergyNeededForLaser());
 
                         PowerGridNetworkComponent needed = laser.GetComponent<PowerGridNetworkComponent>();
                         needed.RequiredItemTypes.Remove(typeof(LaserObject));
-                        needed.RequiredItemTypes.Add(typeof(LaserObject), LaserControl.config.getLaserNeeded());
+                        needed.RequiredItemTypes.Add(typeof(LaserObject), LaserControlMod.config.getLaserNeeded());
 
                     }
                     else if (obj is ComputerLabObject)
@@ -79,7 +79,7 @@ namespace LaserControl.ThreadWatcher
                         ComputerLabObject computer = obj as ComputerLabObject;
                         PowerGridNetworkComponent needed = computer.GetComponent<PowerGridNetworkComponent>();
                         needed.RequiredItemTypes.Remove(typeof(LaserObject));
-                        needed.RequiredItemTypes.Add(typeof(LaserObject), LaserControl.config.getLaserNeeded());
+                        needed.RequiredItemTypes.Add(typeof(LaserObject), LaserControlMod.config.getLaserNeeded());
                     }
 
                     registredObjects.Add(obj);
@@ -118,7 +118,7 @@ namespace LaserControl.ThreadWatcher
 
                 if (parameters.Length == 0)
                 {
-                    Console.WriteLine(LaserControl.prefix + "Invoking lethod with no args !!! This is a problem, please contact developer");
+                    Console.WriteLine(LaserControlMod.prefix + "Invoking lethod with no args !!! This is a problem, please contact developer");
                     result = methodInfo.Invoke(laser, null);
                 }
                 else
@@ -142,7 +142,7 @@ namespace LaserControl.ThreadWatcher
                     object[] parametersArray = new object[] { typeof(OnlinePlayerComponent), new object[0] };
                     result = methodInfo.Invoke(laser, parametersArray);
                     laser.GetComponent<OnlinePlayerComponent>().Initialize();
-                    Console.WriteLine(LaserControl.prefix + "Custom online player component successfuly injected in server !");
+                    Console.WriteLine(LaserControlMod.prefix + "Custom online player component successfuly injected in server !");
 
 
 
@@ -164,14 +164,14 @@ namespace LaserControl.ThreadWatcher
 
                     if (laser.HasComponent<ChargingComponent>())
                     {
-                        Console.WriteLine(LaserControl.prefix + "Failed to remove basic charging component");
+                        Console.WriteLine(LaserControlMod.prefix + "Failed to remove basic charging component");
                     }
                     else
                     {
                         parametersArray = new object[] { typeof(ChargingComponent), new object[0] };
                         result = methodInfo.Invoke(laser, parametersArray);
-                        laser.GetComponent<ChargingComponent>().Initialize(LaserControl.config.secondsToDestroyMeteor, LaserControl.config.secondsToDestroyMeteor);
-                        Console.WriteLine(LaserControl.prefix + "New charging component injected !");
+                        laser.GetComponent<ChargingComponent>().Initialize(LaserControlMod.config.secondsToDestroyMeteor, LaserControlMod.config.secondsToDestroyMeteor);
+                        Console.WriteLine(LaserControlMod.prefix + "New charging component injected !");
                     }
 
 
@@ -181,7 +181,7 @@ namespace LaserControl.ThreadWatcher
             }
             else
             {
-                Console.WriteLine(LaserControl.prefix + "Can't create new component, error while finding reflection method AddComponent in WorldObject class");
+                Console.WriteLine(LaserControlMod.prefix + "Can't create new component, error while finding reflection method AddComponent in WorldObject class");
             }
 
             return false;
@@ -237,13 +237,13 @@ namespace LaserControl.ThreadWatcher
                 bool disable = false;
                 if (!gridHasPower(grid))
                 {
-                    Console.WriteLine(LaserControl.config + "Stoping laser, not ebought energy, this is a server patch. Demand: " + grid.EnergyDemand + " supply: " + grid.EnergySupply);
+                    Console.WriteLine(LaserControlMod.config + "Stoping laser, not ebought energy, this is a server patch. Demand: " + grid.EnergyDemand + " supply: " + grid.EnergySupply);
                     disable = true;
                 }
 
                 if(!gridAlwaysMatchComponent(grid))
                 {
-                    Console.WriteLine(LaserControl.config + "Stoping laser, not ebought laser, this is a server patch");
+                    Console.WriteLine(LaserControlMod.config + "Stoping laser, not ebought laser, this is a server patch");
                     disable = true;
                 }
 
@@ -282,7 +282,7 @@ namespace LaserControl.ThreadWatcher
                     ChargingComponent charToDisable = ltodisable.GetComponent<ChargingComponent>();
                     charToDisable.Activated = false;
                     charToDisable.TimeExpended = 0;
-                    Console.WriteLine(LaserControl.config + "Charging component disabled...");
+                    Console.WriteLine(LaserControlMod.config + "Charging component disabled...");
                 }
             }
         }
@@ -305,7 +305,7 @@ namespace LaserControl.ThreadWatcher
             if (!computerFind)
                 return false;
 
-            if (nb < LaserControl.config.getLaserNeeded())
+            if (nb < LaserControlMod.config.getLaserNeeded())
                 return false;
             return true;
         }

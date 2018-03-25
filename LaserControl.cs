@@ -7,7 +7,7 @@ using System.Threading;
 
 namespace LaserControl
 {
-    public class LaserControl : IModKitPlugin, IServerPlugin
+    public class LaserControlMod : IModKitPlugin, IServerPlugin
     {
         public static String prefix = "LaserControl: ";
         public static String coloredPrefix = ChatFormat.Green.Value + ChatFormat.Bold.Value + prefix + ChatFormat.Clear.Value;
@@ -17,7 +17,8 @@ namespace LaserControl
 
         public string GetStatus()
         {
-            if(!started)
+
+            if (!started)
             {
                 this.start();
                 started = true;
@@ -27,6 +28,7 @@ namespace LaserControl
 
         public void start()
         {
+            Console.WriteLine(LaserControlMod.prefix + " starting !");
 
 
             config = new LaserConfig("LaserConfig", "config");

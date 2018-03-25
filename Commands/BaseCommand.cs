@@ -2,10 +2,6 @@
 using Eco.Gameplay.Systems.Chat;
 using EcoColorLib;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LaserControl.Commands
 {
@@ -25,31 +21,31 @@ namespace LaserControl.Commands
 
         public static void LaserCommand(User user, String argsString = "")
         {
-            user.Player.SendTemporaryMessage(LaserControl.coloredPrefix+ ChatFormat.UnderLine.Value + ChatFormat.Bold.Value+ChatFormat.Green.Value + "Actual configs (change when meteor has been destroyed):");
-            user.Player.SendTemporaryMessage(LaserControl.coloredPrefix + ChatFormat.Yellow.Value + "Laser needed: "+LaserControl.config.getLaserNeeded());
-            user.Player.SendTemporaryMessage(LaserControl.coloredPrefix + ChatFormat.Yellow.Value + "Energy per laser needed: " + LaserControl.config.getEnergyNeededForLaser());
-            user.Player.SendTemporaryMessage(LaserControl.coloredPrefix + ChatFormat.Yellow.Value + "Online player needed: " + LaserControl.config.onlinePlayersNeededForLaser);
+            user.Player.SendTemporaryMessage(LaserControlMod.coloredPrefix+ ChatFormat.UnderLine.Value + ChatFormat.Bold.Value+ChatFormat.Green.Value + "Actual configs (change when meteor has been destroyed):");
+            user.Player.SendTemporaryMessage(LaserControlMod.coloredPrefix + ChatFormat.Yellow.Value + "Laser needed: "+LaserControlMod.config.getLaserNeeded());
+            user.Player.SendTemporaryMessage(LaserControlMod.coloredPrefix + ChatFormat.Yellow.Value + "Energy per laser needed: " + LaserControlMod.config.getEnergyNeededForLaser());
+            user.Player.SendTemporaryMessage(LaserControlMod.coloredPrefix + ChatFormat.Yellow.Value + "Online player needed: " + LaserControlMod.config.onlinePlayersNeededForLaser);
 
-            if (LaserControl.config.activateEconomyReward)
+            if (LaserControlMod.config.activateEconomyReward)
             {
-                user.Player.SendTemporaryMessage(LaserControl.coloredPrefix + ChatFormat.Yellow.Value + "Money per player activator " + LaserControl.config.moneyToGivePerPlayer);
-                user.Player.SendTemporaryMessage(LaserControl.coloredPrefix + ChatFormat.Yellow.Value + "Total money to share with player activator " + LaserControl.config.moneyToGiveToShare);
+                user.Player.SendTemporaryMessage(LaserControlMod.coloredPrefix + ChatFormat.Yellow.Value + "Money per player activator " + LaserControlMod.config.moneyToGivePerPlayer);
+                user.Player.SendTemporaryMessage(LaserControlMod.coloredPrefix + ChatFormat.Yellow.Value + "Total money to share with player activator " + LaserControlMod.config.moneyToGiveToShare);
 
-                user.Player.SendTemporaryMessage(LaserControl.coloredPrefix + ChatFormat.Yellow.Value + "Money type to give: " + LaserControl.config.moneyName);
+                user.Player.SendTemporaryMessage(LaserControlMod.coloredPrefix + ChatFormat.Yellow.Value + "Money type to give: " + LaserControlMod.config.moneyName);
             }
             else
             {
-                user.Player.SendTemporaryMessage(LaserControl.coloredPrefix + ChatFormat.Yellow.Value + "No economic reward set");
+                user.Player.SendTemporaryMessage(LaserControlMod.coloredPrefix + ChatFormat.Yellow.Value + "No economic reward set");
             }
 
-            if(LaserControl.config.activateSkillPointReward)
+            if(LaserControlMod.config.activateSkillPointReward)
             {
-                user.Player.SendTemporaryMessage(LaserControl.coloredPrefix + ChatFormat.Yellow.Value + "Skill point per player activator " + LaserControl.config.skillPointRewardPerPlayer);
-                user.Player.SendTemporaryMessage(LaserControl.coloredPrefix + ChatFormat.Yellow.Value + "Total skill point to share with player activator " + LaserControl.config.skillPointRewardToShare);
+                user.Player.SendTemporaryMessage(LaserControlMod.coloredPrefix + ChatFormat.Yellow.Value + "Skill point per player activator " + LaserControlMod.config.skillPointRewardPerPlayer);
+                user.Player.SendTemporaryMessage(LaserControlMod.coloredPrefix + ChatFormat.Yellow.Value + "Total skill point to share with player activator " + LaserControlMod.config.skillPointRewardToShare);
             }
             else
             {
-                user.Player.SendTemporaryMessage(LaserControl.coloredPrefix + ChatFormat.Yellow.Value + "No skill point reward set");
+                user.Player.SendTemporaryMessage(LaserControlMod.coloredPrefix + ChatFormat.Yellow.Value + "No skill point reward set");
             }
 
 

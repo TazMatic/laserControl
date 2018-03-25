@@ -1,12 +1,7 @@
 ﻿using Eco.Gameplay.Objects;
 using Eco.Gameplay.Players;
 using Eco.Shared.Math;
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LaserControl.Tools
 {
