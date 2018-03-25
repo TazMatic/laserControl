@@ -50,7 +50,6 @@
     <Compile Include="Commands\UpdateDestruction.cs" />
     <Compile Include="Commands\BaseCommand.cs" />
     <Compile Include="Config\LaserConfig.cs" />
-    <Compile Include="Injection.cs" />
     <Compile Include="LaserControl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ThreadWatcher\LaserWatcher.cs" />
@@ -94,22 +93,6 @@
     <ProjectReference Include="..\..\Eco.Simulation\Eco.Simulation.csproj">
       <Project>{7d66ec71-4045-460e-8f16-7f5b64e79939}</Project>
       <Name>Eco.Simulation</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Eco.Stats\Eco.Stats.csproj">
-      <Project>{c945e354-36f5-41cb-b7a1-435ca48ec0d2}</Project>
-      <Name>Eco.Stats</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Eco.Tests\Eco.Tests.csproj">
-      <Project>{7f353c23-c53a-41cc-9e3e-4162ac5441cf}</Project>
-      <Name>Eco.Tests</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Eco.Webserver\Eco.WebServer.csproj">
-      <Project>{eca98155-9d8d-47e1-a1b8-b29cdb192979}</Project>
-      <Name>Eco.WebServer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Eco.WorldGenerator\Eco.WorldGenerator.csproj">
-      <Project>{6799b69a-9bb0-4e26-b6c9-6b7c9eec3a03}</Project>
-      <Name>Eco.WorldGenerator</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Eco.World\Eco.World.csproj">
       <Project>{08bd87d1-b811-4665-b5cd-52e331932fb8}</Project>

@@ -27,7 +27,6 @@ namespace LaserControl.Tools
 
             if (lastPlayerActivator.Count <= 0)
             {
-                Console.WriteLine("Debug pass1");
                 return;
             }
                 
