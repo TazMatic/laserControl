@@ -37,8 +37,9 @@ namespace LaserControl.Tools
                 players += " " + u.Player.FriendlyName;
             }
 
-            ChatManager.ServerMessageToAll(Text.Info(Text.Size(2f, $"" + players + " ont détruit l'astéroide et gagnent des récompenses")), false, Eco.Shared.Services.DefaultChatTags.Meteor, Eco.Shared.Services.ChatCategory.Info);
-            ChatManager.ServerMessageToAll(Text.Info(Text.Size(1f, $"Retour à l'âge de pierre: Il semble que l'explopsion du météorite en plein vol ai détruit une grande partie de l'équipement électronique.")), false, Eco.Shared.Services.DefaultChatTags.Meteor, Eco.Shared.Services.ChatCategory.Info);
+
+            ChatManager.ServerMessageToAllLoc(Text.Info(Text.Size(2f, $"" + players + " ont détruit l'astéroide et gagnent des récompenses")), false, Eco.Shared.Services.DefaultChatTags.Meteor, Eco.Shared.Services.ChatCategory.Info);
+            ChatManager.ServerMessageToAllLoc(Text.Info(Text.Size(1f, $"Retour à l'âge de pierre: Il semble que l'explosion du météorite en plein vol ai détruit une grande partie de l'équipement électronique.")), false, Eco.Shared.Services.DefaultChatTags.Meteor, Eco.Shared.Services.ChatCategory.Info);
 
 
             PowerGridComponent grid = lastLaserActivator.GetComponent<PowerGridComponent>();
@@ -73,7 +74,7 @@ namespace LaserControl.Tools
                         players += " " + u.Player.FriendlyName;
                     }
 
-                    ChatManager.ServerMessageToAll(Text.Info(Text.Size(2f, $"Activation by:" + players)), false, Eco.Shared.Services.DefaultChatTags.Meteor, Eco.Shared.Services.ChatCategory.Info);
+                    ChatManager.ServerMessageToAllLoc(Text.Info(Text.Size(2f, $"Activation by:" + players)), false, Eco.Shared.Services.DefaultChatTags.Meteor, Eco.Shared.Services.ChatCategory.Info);
                     return;
                 }
             }

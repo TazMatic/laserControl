@@ -2,6 +2,7 @@
 using Eco.Gameplay.Players;
 using System;
 using System.Collections;
+using System.Runtime.CompilerServices;
 
 namespace LaserControl.Tools
 {
@@ -29,7 +30,7 @@ namespace LaserControl.Tools
                     foreach (User u in users)
                     {
                         u.UseXP(-togive);
-                        u.Player.SendTemporaryMessage(LaserControlMod.coloredPrefix + "You win " + togive + " skill point !");
+                        u.Player.SendTemporaryMessage(FormattableStringFactory.Create(LaserControlMod.coloredPrefix + "You win " + togive + " skill point !"));
                     }
                 }
 
@@ -65,8 +66,8 @@ namespace LaserControl.Tools
                 {
                     foreach (User u in users)
                     {
-                        currency.CreditAccount(u.Name, -50);
-                        u.Player.SendTemporaryMessage(LaserControlMod.coloredPrefix+"You win " + togive + " "+money+" money !");
+                        currency.CreditAccount(u.Name, togive);
+                        u.Player.SendTemporaryMessage(FormattableStringFactory.Create(LaserControlMod.coloredPrefix+"You win " + togive + " "+money+" money !"));
                     }
                 }
 

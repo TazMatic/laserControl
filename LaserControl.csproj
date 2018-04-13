@@ -33,6 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Eco.Mods, Version=0.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\PublicLibs\Eco.Mods.dll</HintPath>
+    </Reference>
     <Reference Include="LiteDB, Version=4.1.1.0, Culture=neutral, PublicKeyToken=4ee40123013c9f27, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\PublicLibs\LiteDB.dll</HintPath>
@@ -51,13 +55,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\AdminCommands.cs" />
     <Compile Include="Commands\UpdateDestruction.cs" />
     <Compile Include="Commands\BaseCommand.cs" />
+    <Compile Include="Config\CommonConfigGetterFull.cs" />
     <Compile Include="Config\LaserConfig.cs" />
     <Compile Include="LaserControl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ThreadWatcher\LaserWatcher.cs" />
-    <Compile Include="CustomComponent\OnlinePlayerComponent.cs" />
     <Compile Include="ThreadWatcher\MeteorWatcher.cs" />
     <Compile Include="Tools\CustomEvent.cs" />
     <Compile Include="Tools\Destroyer.cs" />
@@ -77,10 +82,6 @@
     <ProjectReference Include="..\..\Eco\Server\Eco.ModKit\Eco.ModKit.csproj">
       <Project>{c09e1100-6122-4e22-ba57-4f335c82d3b7}</Project>
       <Name>Eco.ModKit</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Eco\Server\Eco.Mods\Eco.Mods.csproj">
-      <Project>{7a3fb11d-3a73-4b0c-b991-7326b54ff606}</Project>
-      <Name>Eco.Mods</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Eco\Server\Eco.Plugins\Eco.Plugins.csproj">
       <Project>{5e8e63d5-9898-4830-9918-8dad0b995bb3}</Project>
@@ -122,10 +123,6 @@
       <Project>{ad33efc3-c5cd-4f6f-a958-22e23f1f0b8b}</Project>
       <Name>NodeGraphControl</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Eco\Server\ServerWatcher\ServerWatcher.csproj">
-      <Project>{e63dfb47-ebfa-4749-a9e1-ea44392e2d6a}</Project>
-      <Name>ServerWatcher</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Eco\Tools\TechTreeGenerator\TechTreeGenerator.csproj">
       <Project>{d00210f2-063f-4e12-923b-3762edfa0d45}</Project>
       <Name>TechTreeGenerator</Name>
@@ -137,6 +134,10 @@
     <ProjectReference Include="..\jsonconfigsaver\JsonConfigSaverLib.csproj">
       <Project>{2ada8a66-8a43-46c4-91f9-ce7170fba2f9}</Project>
       <Name>JsonConfigSaverLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LaserControlLight\LaserControlLight.csproj">
+      <Project>{2b1f54f4-648b-487d-b9c6-ebe7bf050b1f}</Project>
+      <Name>LaserControlLight</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

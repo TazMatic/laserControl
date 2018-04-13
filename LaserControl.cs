@@ -31,7 +31,7 @@ namespace LaserControl
             Console.WriteLine(LaserControlMod.prefix + " starting !");
 
 
-            config = new LaserConfig("LaserConfig", "config");
+            config = new LaserConfig("LaserControl", "config");
             if (config.exist())
             {
                 config = config.reload<LaserConfig>();
@@ -41,9 +41,6 @@ namespace LaserControl
                 config.save();
             }
 
-
-            Thread objw = new Thread(() => LaserWatcher.OjbectModifier());
-            objw.Start();
 
 
             Thread lsr = new Thread(() => LaserWatcher.LaserActivationCheck());

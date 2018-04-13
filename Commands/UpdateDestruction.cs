@@ -2,6 +2,7 @@
 using Eco.Gameplay.Systems.Chat;
 using EcoColorLib;
 using System;
+using System.Runtime.CompilerServices;
 
 namespace LaserControl.Commands
 {
@@ -11,7 +12,7 @@ namespace LaserControl.Commands
         public static void updatedestruction(User user, String argsString = "")
         {
             LaserControlMod.config.updateCurrentDestruction();
-            user.Player.SendTemporaryMessage(LaserControlMod.coloredPrefix + ChatFormat.UnderLine.Value + ChatFormat.Bold.Value + ChatFormat.Green.Value + "Destruction id has been incremented");
+            user.Player.SendTemporaryMessage(FormattableStringFactory.Create(LaserControlMod.coloredPrefix + ChatFormat.UnderLine.Value + ChatFormat.Bold.Value + ChatFormat.Green.Value + "Destruction id has been incremented"));
         }
 
 

@@ -1,5 +1,7 @@
 ﻿using JsonConfigSaver;
 using LaserControl.ThreadWatcher;
+using LaserControlLight.Config;
+using LaserControlLight.Thread;
 using Newtonsoft.Json;
 using System;
 
@@ -18,17 +20,9 @@ namespace LaserControl.Config
         public float energyFactorMultiplier = 1.75f;
 
 
-        //destruction
-        [JsonProperty]
-        public int secondsToDestroyMeteor = 20;
 
         //prerequis
-        [JsonProperty]
-        private int energyBaseNeededForLaser = 50000;
-        [JsonProperty]
-        private int laserBaseNeeded = 4;
-        [JsonProperty]
-        public int onlinePlayersNeededForLaser = 1;
+
         [JsonProperty]
         public float laserNeededMultiplier = 1.3f;
 
@@ -53,40 +47,22 @@ namespace LaserControl.Config
 
         //Save
         [JsonProperty]
-        private int currentDestruction = 0;
+        public int currentDestruction = 0;
 
 
         public LaserConfig(string plugin, string name) : base(plugin, name)
         {
-          
+            Console.WriteLine(LaserControlMod.prefix + "Full config controller registred !");
+            LaserLightConfig.commonGetter = new CommonConfigGetterFull();
         }
 
-
-
-
-
-        public int getEnergyNeededForLaser()
-        {
-            double multiplier = Math.Pow(energyFactorMultiplier, currentDestruction);
-            double needed = energyBaseNeededForLaser * multiplier;
-
-            return (int)needed;
-        }
-
-        public int getLaserNeeded()
-        {
-            double multiplier = Math.Pow(laserNeededMultiplier, currentDestruction);
-            double needed = laserBaseNeeded * multiplier;
-
-            return (int)needed;
-        }
 
 
         public void updateCurrentDestruction()
         {
             this.currentDestruction++;
             this.save();
-            LaserWatcher.reloadAllObject();
+            WorldObjAnalyser.reloadAllObject();
         }
 
     }

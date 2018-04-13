@@ -46,7 +46,7 @@ namespace LaserControl.Tools
             }
 
 
-            ChatManager.ServerMessageToAll(Text.Info(Text.Size(2f, $"A new meteor spawned !")), false, Eco.Shared.Services.DefaultChatTags.Meteor, Eco.Shared.Services.ChatCategory.Info);
+            ChatManager.ServerMessageToAllLoc(Text.Info(Text.Size(2f, $"A new meteor spawned !")), false, Eco.Shared.Services.DefaultChatTags.Meteor, Eco.Shared.Services.ChatCategory.Info);
 
         }
     }
