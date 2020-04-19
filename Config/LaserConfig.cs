@@ -55,6 +55,7 @@ namespace LaserControl.Config
         public LaserConfig(string plugin, string name) : base(plugin, name)
         {
             Console.WriteLine(LaserControlMod.prefix + "Full config controller registred!");
+            //Restructure as to pass the config throughout the program
             ConfigGetter configGetter = new ConfigGetter();
         }
 
@@ -64,7 +65,7 @@ namespace LaserControl.Config
         {
             this.currentDestruction++;
             this.save();
-            WorldObjAnalyser.reloadAllObject();
+            //WorldObjAnalyser.reloadAllObject();
         }
 
     }

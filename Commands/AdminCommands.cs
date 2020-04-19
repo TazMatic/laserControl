@@ -42,7 +42,8 @@ namespace LaserControl.Commands
                 return;
             }
 
-            Currency currency = EconomyManager.Currency.GetCurrency(args[1]);
+            CurrencyManager mgr = new CurrencyManager();
+            Currency currency = mgr.GetCurrency(args[1]);
 
             if (currency == null)
             {
@@ -62,11 +63,13 @@ namespace LaserControl.Commands
                 user.Player.SendTemporaryMessage(locStringBuilder.ToLocString());
                 return;
             }
+            //Redo this to use old locstringbuilder
             LocStringBuilder locStringBuilder2 = new LocStringBuilder();
             locStringBuilder2.Append($"Gived {toGive} {args[1]} to {target}");
             user.Player.SendTemporaryMessage(locStringBuilder2.ToLocString());
-            currency.CreditAccount(target.Name, toGive);
-
+            // convert string name to user obj
+            BankAccountManager bam = new BankAccountManager();
+            bam.SpawnMoney(currency, user, toGive);
         }
     }
 

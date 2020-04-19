@@ -139,7 +139,7 @@ namespace LaserControl.ThreadWatcher
             if (!computerFind)
                 return false;
 
-            //Start tackeling the naming convention mess up
+            //Restructure as to pass the config throughout the program
             ConfigGetter config = new ConfigGetter();
             if (nb < config.getLaserNeeded())
                 return false;

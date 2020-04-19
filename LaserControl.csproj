@@ -51,15 +51,14 @@
     <Reference Include="Eco.Simulation">
       <HintPath>..\Mods\New folder\Eco.Simulation.dll</HintPath>
     </Reference>
+    <Reference Include="Eco.World">
+      <HintPath>..\Mods\New folder\Eco.World.dll</HintPath>
+    </Reference>
     <Reference Include="EcoColorLib">
       <HintPath>..\Mods\New folder\EcoColorLib.dll</HintPath>
     </Reference>
     <Reference Include="JsonConfigSaver">
       <HintPath>..\Mods\New folder\JsonConfigSaver.dll</HintPath>
-    </Reference>
-    <Reference Include="LiteDB, Version=4.1.1.0, Culture=neutral, PublicKeyToken=4ee40123013c9f27, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\PublicLibs\LiteDB.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\net40\Newtonsoft.Json.dll</HintPath>
@@ -88,44 +87,6 @@
     <Compile Include="Tools\GeneralTool.cs" />
     <Compile Include="Tools\Rewarder.cs" />
     <Compile Include="Tools\SpawnMeteorThread.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Eco\Server\Eco.Plugins\Eco.Plugins.csproj">
-      <Project>{5e8e63d5-9898-4830-9918-8dad0b995bb3}</Project>
-      <Name>Eco.Plugins</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Eco\Server\Eco.Server\Eco.Server.csproj">
-      <Project>{72534cef-6417-4905-bdea-3e827114afd8}</Project>
-      <Name>Eco.Server</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Eco\Server\Eco.Stats\Eco.Stats.csproj">
-      <Project>{c945e354-36f5-41cb-b7a1-435ca48ec0d2}</Project>
-      <Name>Eco.Stats</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Eco\Server\Eco.Tests\Eco.Tests.csproj">
-      <Project>{7f353c23-c53a-41cc-9e3e-4162ac5441cf}</Project>
-      <Name>Eco.Tests</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Eco\Server\Eco.Webserver\Eco.WebServer.csproj">
-      <Project>{eca98155-9d8d-47e1-a1b8-b29cdb192979}</Project>
-      <Name>Eco.WebServer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Eco\Server\Eco.WorldGenerator\Eco.WorldGenerator.csproj">
-      <Project>{6799b69a-9bb0-4e26-b6c9-6b7c9eec3a03}</Project>
-      <Name>Eco.WorldGenerator</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Eco\Server\Eco.World\Eco.World.csproj">
-      <Project>{08bd87d1-b811-4665-b5cd-52e331932fb8}</Project>
-      <Name>Eco.World</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Eco\Server\NodeGraphControl\NodeGraphControl.csproj">
-      <Project>{ad33efc3-c5cd-4f6f-a958-22e23f1f0b8b}</Project>
-      <Name>NodeGraphControl</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Eco\Tools\TechTreeGenerator\TechTreeGenerator.csproj">
-      <Project>{d00210f2-063f-4e12-923b-3762edfa0d45}</Project>
-      <Name>TechTreeGenerator</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

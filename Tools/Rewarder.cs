@@ -75,7 +75,6 @@ namespace LaserControl.Tools
                         User user = UserManager.FindUserByName(u.Name);
                         BankAccountManager bam = new BankAccountManager();
                         bam.SpawnMoney(currency, user, togive);
-                        // u.Player.SendTemporaryMessage(FormattableStringFactory.Create(LaserControlMod.coloredPrefix + "You win " + togive + " " + money + "!"));
                         LocStringBuilder locStringBuilder = new LocStringBuilder();
                         locStringBuilder.Append(LaserControlMod.coloredPrefix + " You win " + togive + " " + money);
                         u.Player.SendTemporaryMessage(locStringBuilder.ToLocString());

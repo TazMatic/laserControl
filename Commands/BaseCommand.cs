@@ -34,31 +34,45 @@ namespace LaserControl.Commands
             locStringBuilder.Append(LaserControlMod.coloredPrefix + ChatFormat.UnderLine.Value + ChatFormat.Bold.Value + ChatFormat.Green.Value + "Actual configs (change when meteor has been destroyed):");
             user.Player.SendTemporaryMessage(locStringBuilder.ToLocString());
             locStringBuilder.Clear();
-            locStringBuilder.Append(LaserControlMod.coloredPrefix + ChatFormat.Yellow.Value + "Laser needed: " + LaserConfig.ConfigGetter.getLaserNeeded());
+            ConfigGetter config = new ConfigGetter();
+            locStringBuilder.Append(LaserControlMod.coloredPrefix + ChatFormat.Yellow.Value + "Laser needed: " + config.getLaserNeeded());
             user.Player.SendTemporaryMessage(locStringBuilder.ToLocString());
-            user.Player.SendTemporaryMessage(FormattableStringFactory.Create(LaserControlMod.coloredPrefix + ChatFormat.Yellow.Value + "Energy per laser needed: " + LaserConfig.commonGetter.getEnergyNeededForLaser()));
-            user.Player.SendTemporaryMessage(FormattableStringFactory.Create(LaserControlMod.coloredPrefix + ChatFormat.Yellow.Value + "Online player needed: " + LaserControl.LaserControl.config.onlinePlayersNeededForLaser));
+            //Write get energy needed and player ammount getter 
+            //user.Player.SendTemporaryMessage(FormattableStringFactory.Create(LaserControlMod.coloredPrefix + ChatFormat.Yellow.Value + "Energy per laser needed: " + config.getEnergyNeededForLaser()));
+            //user.Player.SendTemporaryMessage(FormattableStringFactory.Create(LaserControlMod.coloredPrefix + ChatFormat.Yellow.Value + "Online player needed: " + LaserControl.LaserControl.config.onlinePlayersNeededForLaser));
 
             if (LaserControlMod.config.activateEconomyReward)
             {
-                user.Player.SendTemporaryMessage(FormattableStringFactory.Create(LaserControlMod.coloredPrefix + ChatFormat.Yellow.Value + "Money per player activator " + LaserControlMod.config.moneyToGivePerPlayer));
-                user.Player.SendTemporaryMessage(FormattableStringFactory.Create(LaserControlMod.coloredPrefix + ChatFormat.Yellow.Value + "Total money to share with player activator " + LaserControlMod.config.moneyToGiveToShare));
+                //user.Player.SendTemporaryMessage(FormattableStringFactory.Create(LaserControlMod.coloredPrefix + ChatFormat.Yellow.Value + "Money per player activator " + LaserControlMod.config.moneyToGivePerPlayer));
+                //user.Player.SendTemporaryMessage(FormattableStringFactory.Create(LaserControlMod.coloredPrefix + ChatFormat.Yellow.Value + "Total money to share with player activator " + LaserControlMod.config.moneyToGiveToShare));
 
-                user.Player.SendTemporaryMessage(FormattableStringFactory.Create(LaserControlMod.coloredPrefix + ChatFormat.Yellow.Value + "Money type to give: " + LaserControlMod.config.moneyName));
+                //user.Player.SendTemporaryMessage(FormattableStringFactory.Create(LaserControlMod.coloredPrefix + ChatFormat.Yellow.Value + "Money type to give: " + LaserControlMod.config.moneyName));
+                //TMP for testing
+                locStringBuilder.Clear();
+                locStringBuilder.Append("ECO REWARD SET");
+                user.Player.SendTemporaryMessage(locStringBuilder.ToLocString());
             }
             else
             {
-                user.Player.SendTemporaryMessage(FormattableStringFactory.Create(LaserControlMod.coloredPrefix + ChatFormat.Yellow.Value + "No economic reward set"));
+                locStringBuilder.Clear();
+                locStringBuilder.Append(LaserControlMod.coloredPrefix + ChatFormat.Yellow.Value + "No economic reward set");
+                user.Player.SendTemporaryMessage(locStringBuilder.ToLocString());
             }
 
             if(LaserControlMod.config.activateSkillPointReward)
             {
-                user.Player.SendTemporaryMessage(FormattableStringFactory.Create(LaserControlMod.coloredPrefix + ChatFormat.Yellow.Value + "Skill point per player activator " + LaserControlMod.config.skillPointRewardPerPlayer));
-                user.Player.SendTemporaryMessage(FormattableStringFactory.Create(LaserControlMod.coloredPrefix + ChatFormat.Yellow.Value + "Total skill point to share with player activator " + LaserControlMod.config.skillPointRewardToShare));
+                locStringBuilder.Clear();
+                locStringBuilder.Append(LaserControlMod.coloredPrefix + ChatFormat.Yellow.Value + "Skill point per player activator " + LaserControlMod.config.skillPointRewardPerPlayer);
+                user.Player.SendTemporaryMessage(locStringBuilder.ToLocString());
+                locStringBuilder.Clear();
+                locStringBuilder.Append(LaserControlMod.coloredPrefix + ChatFormat.Yellow.Value + "Total skill point to share with player activator " + LaserControlMod.config.skillPointRewardToShare);
+                user.Player.SendTemporaryMessage(locStringBuilder.ToLocString());
             }
             else
             {
-                user.Player.SendTemporaryMessage(FormattableStringFactory.Create(LaserControlMod.coloredPrefix + ChatFormat.Yellow.Value + "No skill point reward set"));
+                locStringBuilder.Clear();
+                locStringBuilder.Append(LaserControlMod.coloredPrefix + ChatFormat.Yellow.Value + "No skill point reward set");
+                user.Player.SendTemporaryMessage(locStringBuilder.ToLocString());
             }
 
 
