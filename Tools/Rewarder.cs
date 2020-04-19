@@ -1,5 +1,6 @@
 ﻿using Eco.Gameplay.Economy;
 using Eco.Gameplay.Players;
+using Eco.Shared.Localization;
 using System;
 using System.Collections;
 using System.Runtime.CompilerServices;
@@ -30,7 +31,9 @@ namespace LaserControl.Tools
                     foreach (User u in users)
                     {
                         u.UseXP(-togive);
-                        u.Player.SendTemporaryMessage(FormattableStringFactory.Create(LaserControlMod.coloredPrefix + "You win " + togive + " skill point !"));
+                        LocStringBuilder locStringBuilder = new LocStringBuilder();
+                        locStringBuilder.Append(LaserControlMod.coloredPrefix + "You win " + togive + " skill points!");
+                        u.Player.SendTemporaryMessage(locStringBuilder.ToLocString());
                     }
                 }
 
@@ -40,11 +43,13 @@ namespace LaserControl.Tools
             if (LaserControlMod.config.activateEconomyReward)
             {
                 String money = LaserControlMod.config.moneyName;
-                Currency currency = EconomyManager.Currency.GetCurrency(money);
+                // IDK if this is right. Might want to create a sample mod to test this
+                CurrencyManager mgr = new CurrencyManager();
+                Currency currency = mgr.GetCurrency(money);
 
                 if (currency == null)
                 {
-                    Console.WriteLine(LaserControlMod.prefix+"ERROR while rewarding player ! We can't fin this money name: " + money);
+                    Console.WriteLine(LaserControlMod.prefix+"ERROR while rewarding player! Cannot find currency with name: " + money);
                     return;
                 }
 
@@ -66,16 +71,17 @@ namespace LaserControl.Tools
                 {
                     foreach (User u in users)
                     {
-                        currency.CreditAccount(u.Name, togive);
-                        u.Player.SendTemporaryMessage(FormattableStringFactory.Create(LaserControlMod.coloredPrefix+"You win " + togive + " "+money+" money !"));
+                        // convert string name to user obj
+                        User user = UserManager.FindUserByName(u.Name);
+                        BankAccountManager bam = new BankAccountManager();
+                        bam.SpawnMoney(currency, user, togive);
+                        // u.Player.SendTemporaryMessage(FormattableStringFactory.Create(LaserControlMod.coloredPrefix + "You win " + togive + " " + money + "!"));
+                        LocStringBuilder locStringBuilder = new LocStringBuilder();
+                        locStringBuilder.Append(LaserControlMod.coloredPrefix + " You win " + togive + " " + money);
+                        u.Player.SendTemporaryMessage(locStringBuilder.ToLocString());
                     }
                 }
-
-
             }
-
-
-
         }
     }
 }

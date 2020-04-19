@@ -1,6 +1,7 @@
 ﻿using Eco.Gameplay.Economy;
 using Eco.Gameplay.Players;
 using Eco.Gameplay.Systems.Chat;
+using Eco.Shared.Localization;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -8,6 +9,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace LaserControl.Commands
 {
@@ -19,7 +21,9 @@ namespace LaserControl.Commands
 
             if(argsString.Split(' ').Count()<3)
             {
-                user.Player.SendTemporaryMessage(FormattableStringFactory.Create("Usage: /givemoney playername moneyname quantity"));
+                LocStringBuilder locStringBuilder = new LocStringBuilder();
+                locStringBuilder.Append("Usage: /givemoney playername moneyname quantity");
+                user.Player.SendTemporaryMessage(locStringBuilder.ToLocString());
                 return;
             }
 
@@ -32,7 +36,9 @@ namespace LaserControl.Commands
 
             if (target == null)
             {
-                user.Player.SendTemporaryMessage(FormattableStringFactory.Create("Can't find user: " + args[0]));
+                LocStringBuilder locStringBuilder = new LocStringBuilder();
+                locStringBuilder.Append("Can't find user: " + args[0]);
+                user.Player.SendTemporaryMessage(locStringBuilder.ToLocString());
                 return;
             }
 
@@ -40,7 +46,9 @@ namespace LaserControl.Commands
 
             if (currency == null)
             {
-                user.Player.SendTemporaryMessage(FormattableStringFactory.Create("Can't find money: "+ args[1]));
+                LocStringBuilder locStringBuilder = new LocStringBuilder();
+                locStringBuilder.Append("Can't find money: " + args[1]);
+                user.Player.SendTemporaryMessage(locStringBuilder.ToLocString());
                 return;
             }
 
@@ -49,11 +57,14 @@ namespace LaserControl.Commands
 
             if(!ok)
             {
-                user.Player.SendTemporaryMessage(FormattableStringFactory.Create("Can't convert float: " + args[2]));
+                LocStringBuilder locStringBuilder = new LocStringBuilder();
+                locStringBuilder.Append("Can't convert float: " + args[2]);
+                user.Player.SendTemporaryMessage(locStringBuilder.ToLocString());
                 return;
             }
-
-            user.Player.SendTemporaryMessage(FormattableStringFactory.Create($"Gived {toGive} {args[1]} to {target}"));
+            LocStringBuilder locStringBuilder2 = new LocStringBuilder();
+            locStringBuilder2.Append($"Gived {toGive} {args[1]} to {target}");
+            user.Player.SendTemporaryMessage(locStringBuilder2.ToLocString());
             currency.CreditAccount(target.Name, toGive);
 
         }

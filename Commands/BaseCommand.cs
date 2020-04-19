@@ -1,9 +1,16 @@
 ﻿using Eco.Gameplay.Players;
 using Eco.Gameplay.Systems.Chat;
+using Eco.Shared.Localization;
 using EcoColorLib;
-using LaserControlLight.Config;
+using LaserControl.Config;
 using System;
 using System.Runtime.CompilerServices;
+
+/// <summary>
+/// LocStringBuilder locStringBuilder = new LocStringBuilder();
+///locStringBuilder.Append(LaserControlMod.coloredPrefix + " You win " + togive + " " + money);
+///u.Player.SendTemporaryMessage(locStringBuilder.ToLocString());
+/// </summary>
 
 namespace LaserControl.Commands
 {
@@ -23,10 +30,14 @@ namespace LaserControl.Commands
 
         public static void LaserCommand(User user, String argsString = "")
         {
-            user.Player.SendTemporaryMessage(FormattableStringFactory.Create(LaserControlMod.coloredPrefix+ ChatFormat.UnderLine.Value + ChatFormat.Bold.Value+ChatFormat.Green.Value + "Actual configs (change when meteor has been destroyed):"));
-            user.Player.SendTemporaryMessage(FormattableStringFactory.Create(LaserControlMod.coloredPrefix + ChatFormat.Yellow.Value + "Laser needed: "+ LaserLightConfig.commonGetter.getLaserNeeded()));
-            user.Player.SendTemporaryMessage(FormattableStringFactory.Create(LaserControlMod.coloredPrefix + ChatFormat.Yellow.Value + "Energy per laser needed: " + LaserLightConfig.commonGetter.getEnergyNeededForLaser()));
-            user.Player.SendTemporaryMessage(FormattableStringFactory.Create(LaserControlMod.coloredPrefix + ChatFormat.Yellow.Value + "Online player needed: " + LaserControlLight.LaserControlLight.config.onlinePlayersNeededForLaser));
+            LocStringBuilder locStringBuilder = new LocStringBuilder();
+            locStringBuilder.Append(LaserControlMod.coloredPrefix + ChatFormat.UnderLine.Value + ChatFormat.Bold.Value + ChatFormat.Green.Value + "Actual configs (change when meteor has been destroyed):");
+            user.Player.SendTemporaryMessage(locStringBuilder.ToLocString());
+            locStringBuilder.Clear();
+            locStringBuilder.Append(LaserControlMod.coloredPrefix + ChatFormat.Yellow.Value + "Laser needed: " + LaserConfig.ConfigGetter.getLaserNeeded());
+            user.Player.SendTemporaryMessage(locStringBuilder.ToLocString());
+            user.Player.SendTemporaryMessage(FormattableStringFactory.Create(LaserControlMod.coloredPrefix + ChatFormat.Yellow.Value + "Energy per laser needed: " + LaserConfig.commonGetter.getEnergyNeededForLaser()));
+            user.Player.SendTemporaryMessage(FormattableStringFactory.Create(LaserControlMod.coloredPrefix + ChatFormat.Yellow.Value + "Online player needed: " + LaserControl.LaserControl.config.onlinePlayersNeededForLaser));
 
             if (LaserControlMod.config.activateEconomyReward)
             {

@@ -29,17 +29,17 @@ namespace LaserControl.Tools
             }
                 
 
-            Console.WriteLine("LaserControl detect meteor destroyed !");
+            Console.WriteLine("LaserControl detected the meteor was destroyed!");
 
             String players = "";
             foreach (User u in lastPlayerActivator)
             {
-                players += " " + u.Player.FriendlyName;
+                players += " " + u.Name;
             }
 
 
-            ChatManager.ServerMessageToAllLoc(Text.Info(Text.Size(2f, $"" + players + " ont détruit l'astéroide et gagnent des récompenses")), false, Eco.Shared.Services.DefaultChatTags.Meteor, Eco.Shared.Services.ChatCategory.Info);
-            ChatManager.ServerMessageToAllLoc(Text.Info(Text.Size(1f, $"Retour à l'âge de pierre: Il semble que l'explosion du météorite en plein vol ai détruit une grande partie de l'équipement électronique.")), false, Eco.Shared.Services.DefaultChatTags.Meteor, Eco.Shared.Services.ChatCategory.Info);
+            ChatManager.ServerMessageToAll(Text.Info(Text.Size(2f, $"" + players + " have destroyed the meteor and earned rewards")), false, Eco.Shared.Services.DefaultChatTags.Meteor, Eco.Shared.Services.ChatCategory.Info);
+            ChatManager.ServerMessageToAll(Text.Info(Text.Size(1f, $"Return to the Stone Age: It seems that the explosion of the meteorite in mid-flight destroyed a large part of the electronic equipment.")), false, Eco.Shared.Services.DefaultChatTags.Meteor, Eco.Shared.Services.ChatCategory.Info);
 
 
             PowerGridComponent grid = lastLaserActivator.GetComponent<PowerGridComponent>();
@@ -71,10 +71,10 @@ namespace LaserControl.Tools
                     String players = "";
                     foreach (User u in lastPlayerActivator)
                     {
-                        players += " " + u.Player.FriendlyName;
+                        players += " " + u.Name;
                     }
 
-                    ChatManager.ServerMessageToAllLoc(Text.Info(Text.Size(2f, $"Activation by:" + players)), false, Eco.Shared.Services.DefaultChatTags.Meteor, Eco.Shared.Services.ChatCategory.Info);
+                    ChatManager.ServerMessageToAll(Text.Info(Text.Size(2f, $"Activation by:" + players)), false, Eco.Shared.Services.DefaultChatTags.Meteor, Eco.Shared.Services.ChatCategory.Info);
                     return;
                 }
             }

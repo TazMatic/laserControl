@@ -1,7 +1,7 @@
 ﻿using JsonConfigSaver;
-using LaserControl.ThreadWatcher;
-using LaserControlLight.Config;
-using LaserControlLight.Thread;
+//using LaserControl.ThreadWatcher;
+//using LaserControl.Config;
+//using LaserControl.Thread;
 using Newtonsoft.Json;
 using System;
 
@@ -25,6 +25,8 @@ namespace LaserControl.Config
 
         [JsonProperty]
         public float laserNeededMultiplier = 1.3f;
+        [JsonProperty]
+        public float laserBaseNeeded = 4f;
 
         //reward
         [JsonProperty]
@@ -41,7 +43,7 @@ namespace LaserControl.Config
         [JsonProperty]
         public int moneyToGiveToShare = 1000;
         [JsonProperty]
-        public String moneyName = "GiveYouMoneyNameHere";
+        public String moneyName = "GiveYourMoneyNameHere";
 
 
 
@@ -52,8 +54,8 @@ namespace LaserControl.Config
 
         public LaserConfig(string plugin, string name) : base(plugin, name)
         {
-            Console.WriteLine(LaserControlMod.prefix + "Full config controller registred !");
-            LaserLightConfig.commonGetter = new CommonConfigGetterFull();
+            Console.WriteLine(LaserControlMod.prefix + "Full config controller registred!");
+            ConfigGetter configGetter = new ConfigGetter();
         }
 
 

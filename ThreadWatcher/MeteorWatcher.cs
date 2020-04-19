@@ -19,7 +19,7 @@ namespace LaserControl.ThreadWatcher
             }
         }
 
-        public static void watchMeteor()
+        public static void WatchMeteor()
         {
             while(true)
             {
@@ -36,8 +36,6 @@ namespace LaserControl.ThreadWatcher
                     wasMeteor = true;
                 }
             }
-
-
         }
     }
 }

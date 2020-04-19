@@ -33,17 +33,36 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Eco.Mods, Version=0.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\PublicLibs\Eco.Mods.dll</HintPath>
+    <Reference Include="Eco.Core">
+      <HintPath>..\Mods\New folder\Eco.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Eco.Gameplay">
+      <HintPath>..\Mods\New folder\Eco.Gameplay.dll</HintPath>
+    </Reference>
+    <Reference Include="Eco.ModKit">
+      <HintPath>..\Mods\New folder\Eco.ModKit.dll</HintPath>
+    </Reference>
+    <Reference Include="Eco.Mods">
+      <HintPath>..\Mods\New folder\Eco.Mods.dll</HintPath>
+    </Reference>
+    <Reference Include="Eco.Shared">
+      <HintPath>..\Mods\New folder\Eco.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="Eco.Simulation">
+      <HintPath>..\Mods\New folder\Eco.Simulation.dll</HintPath>
+    </Reference>
+    <Reference Include="EcoColorLib">
+      <HintPath>..\Mods\New folder\EcoColorLib.dll</HintPath>
+    </Reference>
+    <Reference Include="JsonConfigSaver">
+      <HintPath>..\Mods\New folder\JsonConfigSaver.dll</HintPath>
     </Reference>
     <Reference Include="LiteDB, Version=4.1.1.0, Culture=neutral, PublicKeyToken=4ee40123013c9f27, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\PublicLibs\LiteDB.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -58,7 +77,7 @@
     <Compile Include="Commands\AdminCommands.cs" />
     <Compile Include="Commands\UpdateDestruction.cs" />
     <Compile Include="Commands\BaseCommand.cs" />
-    <Compile Include="Config\CommonConfigGetterFull.cs" />
+    <Compile Include="Config\ConfigGetter.cs" />
     <Compile Include="Config\LaserConfig.cs" />
     <Compile Include="LaserControl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -71,18 +90,6 @@
     <Compile Include="Tools\SpawnMeteorThread.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Eco\Server\Eco.Core\Eco.Core.csproj">
-      <Project>{be1761ab-69f5-481c-a4bf-9a7251c02596}</Project>
-      <Name>Eco.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Eco\Server\Eco.Gameplay\Eco.Gameplay.csproj">
-      <Project>{5c980505-2974-4b4b-b56a-2be2422e98aa}</Project>
-      <Name>Eco.Gameplay</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Eco\Server\Eco.ModKit\Eco.ModKit.csproj">
-      <Project>{c09e1100-6122-4e22-ba57-4f335c82d3b7}</Project>
-      <Name>Eco.ModKit</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Eco\Server\Eco.Plugins\Eco.Plugins.csproj">
       <Project>{5e8e63d5-9898-4830-9918-8dad0b995bb3}</Project>
       <Name>Eco.Plugins</Name>
@@ -90,14 +97,6 @@
     <ProjectReference Include="..\..\Eco\Server\Eco.Server\Eco.Server.csproj">
       <Project>{72534cef-6417-4905-bdea-3e827114afd8}</Project>
       <Name>Eco.Server</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Eco\Server\Eco.Shared\Eco.Shared.csproj">
-      <Project>{510558a8-a88e-473f-b07d-918e696c81e1}</Project>
-      <Name>Eco.Shared</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Eco\Server\Eco.Simulation\Eco.Simulation.csproj">
-      <Project>{7d66ec71-4045-460e-8f16-7f5b64e79939}</Project>
-      <Name>Eco.Simulation</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Eco\Server\Eco.Stats\Eco.Stats.csproj">
       <Project>{c945e354-36f5-41cb-b7a1-435ca48ec0d2}</Project>
@@ -126,18 +125,6 @@
     <ProjectReference Include="..\..\Eco\Tools\TechTreeGenerator\TechTreeGenerator.csproj">
       <Project>{d00210f2-063f-4e12-923b-3762edfa0d45}</Project>
       <Name>TechTreeGenerator</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\EcoColorLib\EcoColorLib.csproj">
-      <Project>{869fe5e3-595a-43c2-8149-701e1cc72396}</Project>
-      <Name>EcoColorLib</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\jsonconfigsaver\JsonConfigSaverLib.csproj">
-      <Project>{2ada8a66-8a43-46c4-91f9-ce7170fba2f9}</Project>
-      <Name>JsonConfigSaverLib</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\LaserControlLight\LaserControlLight.csproj">
-      <Project>{2b1f54f4-648b-487d-b9c6-ebe7bf050b1f}</Project>
-      <Name>LaserControlLight</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

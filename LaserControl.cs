@@ -48,7 +48,7 @@ namespace LaserControl
 
 
             MeteorWatcher.Initialize();
-            Thread meteorw = new Thread(() => MeteorWatcher.watchMeteor());
+            Thread meteorw = new Thread(() => MeteorWatcher.WatchMeteor());
             meteorw.Start();
 
         }

@@ -42,11 +42,11 @@ namespace LaserControl.Tools
             }
             else
             {
-                Console.WriteLine(LaserControlMod.prefix + "Error while create the new meteor, method not find");
+                Console.WriteLine(LaserControlMod.prefix + "Error while trying to create the new meteor, method not find");
             }
 
 
-            ChatManager.ServerMessageToAllLoc(Text.Info(Text.Size(2f, $"A new meteor spawned !")), false, Eco.Shared.Services.DefaultChatTags.Meteor, Eco.Shared.Services.ChatCategory.Info);
+            ChatManager.ServerMessageToAll(Text.Info(Text.Size(2f, $"A new meteor spawned !")), false, Eco.Shared.Services.DefaultChatTags.Meteor, Eco.Shared.Services.ChatCategory.Info);
 
         }
     }

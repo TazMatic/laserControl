@@ -4,7 +4,7 @@ using Eco.Gameplay.Systems.Chat;
 using Eco.Mods.TechTree;
 using Eco.Shared.Utils;
 using LaserControl.Tools;
-using LaserControlLight.Config;
+using LaserControl.Config;
 using System;
 using System.Threading;
 
@@ -54,7 +54,7 @@ namespace LaserControl.ThreadWatcher
 
             if(hasOneActivated&& !wasActive)
             {
-                Console.WriteLine("Laser control detect a new laser activation !");
+                Console.WriteLine("Laser control detect a new laser activation!");
                 if(activ==null)
                 {
                     Console.WriteLine("Fatal error while sending destruction event !");
@@ -71,20 +71,20 @@ namespace LaserControl.ThreadWatcher
                 bool disable = false;
                 if (!gridHasPower(grid))
                 {
-                    Console.WriteLine(LaserControlMod.config + "Stoping laser, not ebought energy, this is a server patch. Demand: " + grid.EnergyDemand + " supply: " + grid.EnergySupply);
+                    Console.WriteLine(LaserControlMod.config + "Stoping laser, not enought energy, this is a server patch. Demand: " + grid.EnergyDemand + " supply: " + grid.EnergySupply);
                     disable = true;
                 }
 
                 if(!gridAlwaysMatchComponent(grid))
                 {
-                    Console.WriteLine(LaserControlMod.config + "Stoping laser, not ebought laser, this is a server patch");
+                    Console.WriteLine(LaserControlMod.config + "Stoping laser, not enought lasers, this is a server patch");
                     disable = true;
                 }
 
                 if(disable)
                 {
                     disableLaser(grid);
-                    ChatManager.ServerMessageToAllLoc(Text.Info(Text.Size(1f, $"Laser has been disabled")), false, Eco.Shared.Services.DefaultChatTags.Meteor, Eco.Shared.Services.ChatCategory.Info);
+                    ChatManager.ServerMessageToAll(Text.Info(Text.Size(1f, $"Laser has been disabled")), false, Eco.Shared.Services.DefaultChatTags.Meteor, Eco.Shared.Services.ChatCategory.Info);
                 }
             }
             else if(wasActive && !hasOneActivated)
@@ -139,8 +139,9 @@ namespace LaserControl.ThreadWatcher
             if (!computerFind)
                 return false;
 
-            
-            if (nb < LaserLightConfig.commonGetter.getLaserNeeded())
+            //Start tackeling the naming convention mess up
+            ConfigGetter config = new ConfigGetter();
+            if (nb < config.getLaserNeeded())
                 return false;
             return true;
         }
