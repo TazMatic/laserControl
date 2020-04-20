@@ -14,10 +14,8 @@ namespace LaserControl
         public static LaserConfig config;
 
         private Boolean started = false;
-
         public string GetStatus()
         {
-
             if (!started)
             {
                 this.start();
@@ -30,7 +28,6 @@ namespace LaserControl
         {
             Console.WriteLine(LaserControlMod.prefix + " starting !");
 
-
             config = new LaserConfig("LaserControl", "config");
             if (config.exist())
             {
@@ -41,16 +38,23 @@ namespace LaserControl
                 config.save();
             }
 
-
-
             Thread lsr = new Thread(() => LaserWatcher.LaserActivationCheck());
             lsr.Start();
+            Console.WriteLine(LaserControlMod.prefix + " starting: laserWatcher!");
 
 
             MeteorWatcher.Initialize();
             Thread meteorw = new Thread(() => MeteorWatcher.WatchMeteor());
             meteorw.Start();
+            Console.WriteLine(LaserControlMod.prefix + " starting: meteorWatcher!");
 
+        }
+
+        static void Main(string[] args)
+        {
+            Console.WriteLine(LaserControlMod.prefix + " Made it to main");
+            LaserControlMod laserControlMod = new LaserControlMod();
+            laserControlMod.GetStatus();
         }
     }
 }

@@ -36,7 +36,6 @@ namespace LaserControl.ThreadWatcher
                 if (obj is LaserObject)
                 {
                     LaserObject laser = obj as LaserObject;
-
                     ChargingComponent compo = laser.GetComponent<ChargingComponent>();
                     if (compo.Activated)
                     {
