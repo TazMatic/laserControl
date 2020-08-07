@@ -4,13 +4,7 @@ using Eco.Shared.Localization;
 using EcoColorLib;
 using LaserControl.Config;
 using System;
-using System.Runtime.CompilerServices;
 
-/// <summary>
-/// LocStringBuilder locStringBuilder = new LocStringBuilder();
-///locStringBuilder.Append(LaserControlMod.coloredPrefix + " You win " + togive + " " + money);
-///u.Player.SendTemporaryMessage(locStringBuilder.ToLocString());
-/// </summary>
 
 namespace LaserControl.Commands
 {

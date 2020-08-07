@@ -49,12 +49,5 @@ namespace LaserControl
             Console.WriteLine(LaserControlMod.prefix + " starting: meteorWatcher!");
 
         }
-
-        static void Main(string[] args)
-        {
-            Console.WriteLine(LaserControlMod.prefix + " Made it to main");
-            LaserControlMod laserControlMod = new LaserControlMod();
-            laserControlMod.GetStatus();
-        }
     }
 }

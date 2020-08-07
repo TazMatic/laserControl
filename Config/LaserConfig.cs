@@ -1,15 +1,15 @@
 ﻿using JsonConfigSaver;
-//using LaserControl.ThreadWatcher;
-//using LaserControl.Config;
-//using LaserControl.Thread;
 using Newtonsoft.Json;
 using System;
+
 
 namespace LaserControl.Config
 {
     public sealed class LaserConfig : JsonEcoConfig
     {
         //afterDestroy
+        [JsonProperty]
+        public bool spawnMoreMeteors =  true;
         [JsonProperty]
         public bool destroyLasersAfterMeteorDestroy = true;
         [JsonProperty]

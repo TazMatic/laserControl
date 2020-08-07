@@ -1,10 +1,10 @@
 ﻿using Eco.Gameplay.Economy;
 using Eco.Gameplay.Players;
 using Eco.Gameplay.Systems.Chat;
+using Eco.Gameplay.Items;
 using Eco.Shared.Localization;
 using System;
 using System.Linq;
-
 
 
 namespace LaserControl.Commands
@@ -12,62 +12,39 @@ namespace LaserControl.Commands
     public class AdminCommands : IChatCommandHandler
     {
         [ChatCommand("givemoney", "give money to player", ChatAuthorizationLevel.Admin)]
-        public static void LaserCommandL(User user, String argsString = "")
+        public static void LaserCommandL(User user, String targetName, String currencyName, float toGive = 200)
         {
+            LocStringBuilder locStringBuilder = new LocStringBuilder();
+            //check first by user ID
 
-            if(argsString.Split(' ').Count()<3)
-            {
-                LocStringBuilder locStringBuilder = new LocStringBuilder();
-                locStringBuilder.Append("Usage: /givemoney playername moneyname quantity");
-                user.Player.SendTemporaryMessage(locStringBuilder.ToLocString());
-                return;
-            }
-
-
-            String[] args = argsString.Split(' ');
-
-
-
-            User target = UserManager.FindUserByName(args[0]);
+            User target = UserManager.FindUserByName(targetName);
 
             if (target == null)
             {
-                LocStringBuilder locStringBuilder = new LocStringBuilder();
-                locStringBuilder.Append("Can't find user: " + args[0]);
+                locStringBuilder.Clear();
+                locStringBuilder.Append("Can't find user: " + targetName);
                 user.Player.SendTemporaryMessage(locStringBuilder.ToLocString());
                 return;
             }
 
-            CurrencyManager mgr = new CurrencyManager();
-            Currency currency = mgr.GetCurrency(args[1]);
+            Currency currency = CurrencyManager.Obj.GetCurrency(currencyName);
 
             if (currency == null)
             {
-                LocStringBuilder locStringBuilder = new LocStringBuilder();
-                locStringBuilder.Append("Can't find money: " + args[1]);
+                locStringBuilder.Clear();
+                locStringBuilder.Append("Can't find money: " + currencyName);
                 user.Player.SendTemporaryMessage(locStringBuilder.ToLocString());
                 return;
             }
 
-            float toGive;
-            bool ok = float.TryParse(args[2], out toGive);
+           //test ammount to give
 
-            if(!ok)
-            {
-                LocStringBuilder locStringBuilder = new LocStringBuilder();
-                locStringBuilder.Append("Can't convert float: " + args[2]);
-                user.Player.SendTemporaryMessage(locStringBuilder.ToLocString());
-                return;
-            }
-            //Redo this to use old locstringbuilder
-            LocStringBuilder locStringBuilder2 = new LocStringBuilder();
-            locStringBuilder2.Append($"Gived {toGive} {args[1]} to {target}");
-            user.Player.SendTemporaryMessage(locStringBuilder2.ToLocString());
-            // convert string name to user obj
-            BankAccountManager bam = new BankAccountManager();
-            bam.SpawnMoney(currency, user, toGive);
+            locStringBuilder.Clear();
+            locStringBuilder.Append("Gived {toGive} {args[1]} to {target}");
+            user.Player.SendTemporaryMessage(locStringBuilder.ToLocString());
+            // convert string name to user obj  
+            
+             target.BankAccount.AddCurrency(currency, toGive);
         }
     }
-
-
-    }
+}

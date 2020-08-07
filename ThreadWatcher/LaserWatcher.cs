@@ -12,16 +12,13 @@ namespace LaserControl.ThreadWatcher
 {
     class LaserWatcher
     {
-
-
         public static void LaserActivationCheck()
         {
             while(true)
             {
                 checkLaserActivation();
                 Thread.Sleep(1000);
-            }
-          
+            }     
         }
 
         public static bool wasActive = false;
@@ -88,7 +85,7 @@ namespace LaserControl.ThreadWatcher
             }
             else if(wasActive && !hasOneActivated)
             {
-                //laser disabled
+                //laser disabled: this does nothing as of right now
                 CustomEvent.onLaserDisable();
                 wasActive = false;
             }
@@ -97,11 +94,6 @@ namespace LaserControl.ThreadWatcher
                 //continue desactivation
                 wasActive = false;
             }
-
-         
-
-          
-
         }
 
         public static void disableLaser(PowerGridComponent grid)
@@ -119,6 +111,7 @@ namespace LaserControl.ThreadWatcher
                 }
             }
         }
+
         public static bool gridAlwaysMatchComponent(PowerGridComponent grid)
         {
             int nb = 0;
@@ -158,7 +151,5 @@ namespace LaserControl.ThreadWatcher
                 return false;
             return true;
         }
-
-  
     }
 }

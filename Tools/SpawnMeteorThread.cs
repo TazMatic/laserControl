@@ -29,25 +29,23 @@ namespace LaserControl.Tools
                 }
 
             }
-
-            if (methodInfo != null)
-            {
-                object result = null;
-                ParameterInfo[] parameters = methodInfo.GetParameters();
-
-                if (parameters.Length == 0)
+            if (LaserControlMod.config.spawnMoreMeteors) {
+                if (methodInfo != null)
                 {
-                    result = methodInfo.Invoke(null, null);
+                    object result = null;
+                    ParameterInfo[] parameters = methodInfo.GetParameters();
+
+                    if (parameters.Length == 0)
+                    {
+                        result = methodInfo.Invoke(null, null);
+                    }
                 }
+                else
+                {
+                    Console.WriteLine(LaserControlMod.prefix + "Error while trying to create the new meteor, method not find");
+                }
+                ChatManager.ServerMessageToAll(Text.Info(Text.Size(2f, $"A new meteor spawned !")), false, Eco.Shared.Services.DefaultChatTags.Meteor, Eco.Shared.Services.ChatCategory.Info);
             }
-            else
-            {
-                Console.WriteLine(LaserControlMod.prefix + "Error while trying to create the new meteor, method not find");
-            }
-
-
-            ChatManager.ServerMessageToAll(Text.Info(Text.Size(2f, $"A new meteor spawned !")), false, Eco.Shared.Services.DefaultChatTags.Meteor, Eco.Shared.Services.ChatCategory.Info);
-
         }
     }
 }

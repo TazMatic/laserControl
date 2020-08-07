@@ -12,6 +12,8 @@
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -34,34 +36,31 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Eco.Core">
-      <HintPath>..\Mods\New folder\Eco.Core.dll</HintPath>
+      <HintPath>..\..\DLL 8.3.3\Eco.Core.dll</HintPath>
     </Reference>
     <Reference Include="Eco.Gameplay">
-      <HintPath>..\Mods\New folder\Eco.Gameplay.dll</HintPath>
-    </Reference>
-    <Reference Include="Eco.ModKit">
-      <HintPath>..\Mods\New folder\Eco.ModKit.dll</HintPath>
+      <HintPath>..\..\DLL 8.3.3\Eco.Gameplay.dll</HintPath>
     </Reference>
     <Reference Include="Eco.Mods">
-      <HintPath>..\Mods\New folder\Eco.Mods.dll</HintPath>
+      <HintPath>..\..\DLL 8.3.3\Eco.Mods.dll</HintPath>
     </Reference>
     <Reference Include="Eco.Shared">
-      <HintPath>..\Mods\New folder\Eco.Shared.dll</HintPath>
+      <HintPath>..\..\DLL 8.3.3\Eco.Shared.dll</HintPath>
     </Reference>
     <Reference Include="Eco.Simulation">
-      <HintPath>..\Mods\New folder\Eco.Simulation.dll</HintPath>
-    </Reference>
-    <Reference Include="Eco.World">
-      <HintPath>..\Mods\New folder\Eco.World.dll</HintPath>
+      <HintPath>..\..\DLL 8.3.3\Eco.Simulation.dll</HintPath>
     </Reference>
     <Reference Include="EcoColorLib">
-      <HintPath>..\Mods\New folder\EcoColorLib.dll</HintPath>
+      <HintPath>..\..\DLL 8.3.3\EcoColorLib.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="JsonConfigSaver">
-      <HintPath>..\Mods\New folder\JsonConfigSaver.dll</HintPath>
+      <HintPath>..\..\DLL 8.3.3\JsonConfigSaver.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\net40\Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -90,7 +89,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -100,4 +101,8 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <Target Name="ILMerge">
+    <!-- the ILMergePath property points to the location of ILMerge.exe console application -->
+    <Exec Command="$(ILMergeConsolePath) /out:LaserControl.dll JsonConfigSaver.dll EcoColorLib.dll" />
+  </Target>
 </Project>

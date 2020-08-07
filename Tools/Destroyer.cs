@@ -24,7 +24,6 @@ namespace LaserControl.Tools
                 {
                     toDest.Add(o);
                 }
-
             }
 
             foreach (WorldObject o in toDest)
